@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>时间银行发展情况</title>
+
+	<style type="text/css">
+		div {
+			width: 300px;
+			height: 200px;
+		}
+	</style>
+
+	<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.min.js"></script>
+</head>
+
+<body>
+	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="container-line"></div>
+  <div id="container-bar"></div>
+  <div id="container-pie"></div>
+  <div id="container-line"></div>
+  <div id="container-line"></div>
+  <div id="container-line"></div>
+
+  <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var line = echarts.init(document.getElementById('container-line'))
+      var bar = echarts.init(document.getElementById('container-bar'))
+      var pie = echarts.init(document.getElementById('container-pie'))
+
+      // 指定图表的配置项和数据
+      var lineOption = {
+      	title: {
+      		text: '用户增长情况'
+      	},
+		    xAxis: {
+		        type: 'category',
+		        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+		    },
+		    yAxis: {
+		        type: 'value'
+		    },
+		    series: [{
+		        data: [1, 2, 4, 6, 7, 11, 14],
+		        type: 'line'
+		    }]
+			};
+			var barOption = {
+				title: {
+					text: '每日活跃用户统计'
+				},
+		    xAxis: {
+		        type: 'category',
+		        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+		    },
+		    yAxis: {
+		        type: 'value'
+		    },
+		    series: [{
+		        data: [4, 6, 7, 10, 4, 4, 7],
+		        type: 'bar'
+		    }]
+			};
+
+			var pieOption = {
+		    title : {
+		        text: '用户类型分布',
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    series : [
+		        {
+		            type: 'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[
+		                {value:1, name:'管理员/开发者'},
+		                {value:5, name:'寝室室友'},
+		                {value:2, name:'班级同学'},
+		                {value:3, name:'社团同学'},
+		            ],
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            }
+		        }
+		    ]
+		};
+
+    // 使用刚指定的配置项和数据显示图表。
+    line.setOption(lineOption)
+    bar.setOption(barOption)
+    pie.setOption(pieOption)
+  </script>
+</body>
+</html>
